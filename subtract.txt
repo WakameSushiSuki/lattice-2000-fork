@@ -1,3 +1,5 @@
+// 68 gates
+
 1:
     C = A & B
     W = A ^ B
