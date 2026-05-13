@@ -1,1 +1,2 @@
 D = (WE & I) | (!WE & D)
+Q = TSB(RE, D)
