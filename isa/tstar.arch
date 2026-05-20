@@ -1,0 +1,6 @@
+TWA -> W = A, PC += 0100
+TAW -> A = W, PC += 0100
+TCW -> C = W, PC += 0100
+TCA -> C = A, PC += 0100
+TAC -> A = C, PC += 0100
+TWC -> W = C, PC += 0100
