@@ -12,6 +12,9 @@ fn main() {
     let mut reg_a: u8 = 0;
     let mut reg_w: u8 = 0;
     let mut reg_c: u8 = 0;
+    let mut gt: u8 = 0;
+    let mut lt: u8 = 0;
+    let mut eq: u8 = 0;
     let mut memory: HashMap<u8, u8> = HashMap::new();
 
     while i < code.len() {
@@ -178,6 +181,36 @@ fn main() {
             }
             0x1B => { // DCC
                 reg_c = math::sub(reg_c, 1)[0];
+                i = pcinc(i);
+            }
+            0x1C => { // CPA
+                let res = compare::cmp(reg_a, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                eq = res[0];
+                lt = res[1];
+                gt = res[2];
+                i = pcinc(i);
+            }
+            0x1D => { // CPW
+                let res = compare::cmp(reg_w, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                eq = res[0];
+                lt = res[1];
+                gt = res[2];
+                i = pcinc(i);
+            }
+            0x1E => { // CPC
+                let res = compare::cmp(reg_c, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                eq = res[0];
+                lt = res[1];
+                gt = res[2];
                 i = pcinc(i);
             }
             _ => {

@@ -200,6 +200,27 @@ fn assemble(code: String) -> Vec<u8> {
                 bytes.push(0x00);
                 bytes.push(0x00);
             }
+            "CPA" => {
+                bytes.push(0x1C);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+                bytes.push(0x00);
+                bytes.push(0x00);
+            }
+            "CPW" => {
+                bytes.push(0x1D);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+                bytes.push(0x00);
+                bytes.push(0x00);
+            }
+            "CPC" => {
+                bytes.push(0x1E);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+                bytes.push(0x00);
+                bytes.push(0x00);
+            }
             _ => panic!("Unknown instruction"),
         }
     }
