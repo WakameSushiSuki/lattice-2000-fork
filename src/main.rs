@@ -213,6 +213,9 @@ fn main() {
                 gt = res[2];
                 i = pcinc(i);
             }
+            0xFF => { // HLT
+                break;
+            }
             _ => {
                 println!("Unknown instruction: {}", instr[0]);
                 break;
