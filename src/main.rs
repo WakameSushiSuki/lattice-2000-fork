@@ -189,6 +189,5 @@ fn main() {
 }
 
 fn pcinc(i: usize) -> usize {
-    let inc = math::add(i as u8, 4);
-    return inc[0] as usize;
+    return i + 4;
 }

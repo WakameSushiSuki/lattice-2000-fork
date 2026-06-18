@@ -200,7 +200,6 @@ fn assemble(code: String) -> Vec<u8> {
                 bytes.push(0x00);
                 bytes.push(0x00);
             }
-             _ => panic!("Unknown instruction"),
             _ => panic!("Unknown instruction"),
         }
     }
