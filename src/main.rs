@@ -1,5 +1,6 @@
 mod math;
 mod compare;
+mod logic;
 
 use std::fs;
 use std::env;
@@ -18,7 +19,7 @@ fn main() {
     let mut memory: HashMap<u8, u8> = HashMap::new();
 
     while i < code.len() {
-        let instr = vec![code[i], code[i+1], code[i+2], code[i+3]];
+        let instr = vec![code[i], code[i+1]];
 
         match instr[0] {
             0x00 => { // NOP
@@ -213,6 +214,81 @@ fn main() {
                 gt = res[2];
                 i = pcinc(i);
             }
+            0x1F => { // ORA
+                reg_a = logic::lor(reg_a, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x20 => { // ORW
+                reg_w = logic::lor(reg_w, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x21 => { // ORC
+                reg_c = logic::lor(reg_c, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x22 => { // ANA
+                reg_a = logic::land(reg_a, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x23 => { // ANW
+                reg_w = logic::land(reg_w, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x24 => { // ANC
+                reg_c = logic::land(reg_c, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x25 => { // XRA
+                reg_a = logic::lxor(reg_a, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x26 => { // XRW
+                reg_w = logic::lxor(reg_w, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x27 => { // XRC
+                reg_c = logic::lxor(reg_c, match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0,
+                });
+                i = pcinc(i);
+            }
+            0x28 => { // NTA
+                reg_a = logic::lnot(reg_a);
+                i = pcinc(i);
+            }
+            0x29 => { // NTW
+                reg_w = logic::lnot(reg_w);
+                i = pcinc(i);
+            }
+            0x2A => { // NTC
+                reg_c = logic::lnot(reg_c);
+                i = pcinc(i);
+            }
             0xFF => { // HLT
                 break;
             }
@@ -225,5 +301,5 @@ fn main() {
 }
 
 fn pcinc(i: usize) -> usize {
-    return i + 4;
+    return i + 2;
 }

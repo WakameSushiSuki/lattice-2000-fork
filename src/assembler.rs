@@ -20,211 +20,204 @@ fn assemble(code: String) -> Vec<u8> {
             "NOP" => {
                 bytes.push(0x00);
                 bytes.push(0x00);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "ADA" => {
                 bytes.push(0x01);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "ADW" => {
                 bytes.push(0x02);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "ADC" => {
                 bytes.push(0x03);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "SBA" => {
                 bytes.push(0x04);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "SBW" => {
                 bytes.push(0x05);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "SBC" => {
                 bytes.push(0x06);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "MLA" => {
                 bytes.push(0x07);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "MLW" => {
                 bytes.push(0x08);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "MLC" => {
                 bytes.push(0x09);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "DVA" => {
                 bytes.push(0x0A);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "DVW" => {
                 bytes.push(0x0B);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "DVC" => {
                 bytes.push(0x0C);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "LMA" => {
                 bytes.push(0x0D);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "LMW" => {
                 bytes.push(0x0E);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "LMC" => {
                 bytes.push(0x0F);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "TAW" => {
                 bytes.push(0x10);
-                bytes.push(0x00);
-                bytes.push(0x00);
                 bytes.push(0x00);
             }
             "TAC" => {
                 bytes.push(0x11);
                 bytes.push(0x00);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "TWA" => {
                 bytes.push(0x12);
-                bytes.push(0x00);
-                bytes.push(0x00);
                 bytes.push(0x00);
             }
             "TWC" => {
                 bytes.push(0x13);
                 bytes.push(0x00);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "TCA" => {
                 bytes.push(0x14);
-                bytes.push(0x00);
-                bytes.push(0x00);
                 bytes.push(0x00);
             }
             "TCW" => {
                 bytes.push(0x15);
                 bytes.push(0x00);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "ICA" => {
                 bytes.push(0x16);
-                bytes.push(0x00);
-                bytes.push(0x00);
                 bytes.push(0x00);
             }
             "ICW" => {
                 bytes.push(0x17);
                 bytes.push(0x00);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "ICC" => {
                 bytes.push(0x18);
-                bytes.push(0x00);
-                bytes.push(0x00);
                 bytes.push(0x00);
             }
             "DCA" => {
                 bytes.push(0x19);
                 bytes.push(0x00);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "DCW" => {
                 bytes.push(0x1A);
                 bytes.push(0x00);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "DCC" => {
                 bytes.push(0x1B);
-                bytes.push(0x00);
-                bytes.push(0x00);
                 bytes.push(0x00);
             }
             "CPA" => {
                 bytes.push(0x1C);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "CPW" => {
                 bytes.push(0x1D);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
-                bytes.push(0x00);
-                bytes.push(0x00);
             }
             "CPC" => {
                 bytes.push(0x1E);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
+            }
+            "ORA" => {
+                bytes.push(0x1F);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "ORW" => {
+                bytes.push(0x20);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "ORC" => {
+                bytes.push(0x21);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "ANA" => {
+                bytes.push(0x22);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "ANW" => {
+                bytes.push(0x23);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "ANC" => {
+                bytes.push(0x24);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "XRA" => {
+                bytes.push(0x25);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "XRW" => {
+                bytes.push(0x26);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "XRC" => {
+                bytes.push(0x27);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "NTA" => {
+                bytes.push(0x28);
                 bytes.push(0x00);
+            }
+            "NTW" => {
+                bytes.push(0x29);
+                bytes.push(0x00);
+            }
+            "NTC" => {
+                bytes.push(0x2A);
                 bytes.push(0x00);
             }
             "HLT" => {
                 bytes.push(0xFF);
-                bytes.push(0x00);
-                bytes.push(0x00);
                 bytes.push(0x00);
             }
             _ => panic!("Unknown instruction"),
