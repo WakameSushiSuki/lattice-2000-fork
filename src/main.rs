@@ -2,6 +2,7 @@ mod math;
 mod compare;
 mod logic;
 
+use std::arch::x86_64;
 use std::fs;
 use std::env;
 use std::collections::HashMap;
@@ -288,6 +289,51 @@ fn main() {
             0x2A => { // NTC
                 reg_c = logic::lnot(reg_c);
                 i = pcinc(i);
+            }
+            0x2B => { // LDA
+                reg_a = match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0
+                };
+                i = pcinc(i);
+            }
+            0x2C => { // LDW
+                reg_w = match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0
+                };
+                i = pcinc(i);
+            }
+            0x2D => { // LDC
+                reg_c = match memory.get(&instr[1]) {
+                    Some(x) => *x,
+                    None => 0
+                };
+                i = pcinc(i);
+            }
+            0x2E => { // STA
+                memory.insert(instr[1], reg_a);
+                i = pcinc(i);
+            }
+            0x2F => { // STW
+                memory.insert(instr[1], reg_w);
+                i = pcinc(i);
+            }
+            0x30 => { // STC
+                memory.insert(instr[1], reg_c);
+                i = pcinc(i);
+            }
+            0x31 => { // LAI
+                reg_a = instr[1];
+                i = pcinc(i)
+            }
+            0x31 => { // LWI
+                reg_w = instr[1];
+                i = pcinc(i)
+            }
+            0x31 => { // LCI
+                reg_c = instr[1];
+                i = pcinc(i)
             }
             0xFF => { // HLT
                 break;

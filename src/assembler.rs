@@ -220,6 +220,51 @@ fn assemble(code: String) -> Vec<u8> {
                 bytes.push(0xFF);
                 bytes.push(0x00);
             }
+            "LDA" => {
+                bytes.push(0x2B);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "LDW" => {
+                bytes.push(0x2C);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "LDC" => {
+                bytes.push(0x2D);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "STA" => {
+                bytes.push(0x2E);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "STW" => {
+                bytes.push(0x2F);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "STC" => {
+                bytes.push(0x30);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "LAI" => {
+                bytes.push(0x31);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "LWI" => {
+                bytes.push(0x32);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "LCI" => {
+                bytes.push(0x33);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
             _ => panic!("Unknown instruction"),
         }
     }
