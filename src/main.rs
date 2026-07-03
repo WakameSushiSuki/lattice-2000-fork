@@ -1,11 +1,10 @@
 mod math;
 mod compare;
 mod logic;
+mod shift;
 
-use std::arch::x86_64;
 use std::fs;
 use std::env;
-use std::collections::HashMap;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -390,6 +389,44 @@ fn main() {
             }
             0x3E => {
                 if lt == 1 {
+                    i = instr[1] as usize;
+                }
+            }
+            0x3F => {
+                i = memory[sp as usize] as usize;
+                memory[sp as usize] = 0x00;
+                sp = math::add(sp, 1)[0];
+            }
+            0x40 => {
+                sp = math::sub(sp, 1)[0];
+                memory[sp as usize] = i as u8;
+                i = instr[1] as usize;
+            }
+            0x41 => {
+                if eq == 1 {
+                    sp = math::sub(sp, 1)[0];
+                    memory[sp as usize] = i as u8;
+                    i = instr[1] as usize;
+                }
+            }
+            0x42 => {
+                if eq == 0 {
+                    sp = math::sub(sp, 1)[0];
+                    memory[sp as usize] = i as u8;
+                    i = instr[1] as usize;
+                }
+            }
+            0x43 => {
+                if gt == 1 {
+                    sp = math::sub(sp, 1)[0];
+                    memory[sp as usize] = i as u8;
+                    i = instr[1] as usize;
+                }
+            }
+            0x44 => {
+                if lt == 1 {
+                    sp = math::sub(sp, 1)[0];
+                    memory[sp as usize] = i as u8;
                     i = instr[1] as usize;
                 }
             }

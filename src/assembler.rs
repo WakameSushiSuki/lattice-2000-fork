@@ -1,6 +1,5 @@
 use std::env;
 use std::fs;
-use std::convert::TryInto;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -311,6 +310,35 @@ fn assemble(code: String) -> Vec<u8> {
             }
             "BLT" => {
                 bytes.push(0x3E);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "RET" => {
+                bytes.push(0x3F);
+                bytes.push(0x00);
+            }
+            "CALL" => {
+                bytes.push(0x40);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "CEQ" => {
+                bytes.push(0x41);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "CNE" => {
+                bytes.push(0x42);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "CGE" => {
+                bytes.push(0x43);
+                let addr = instruction[1].parse::<u8>().unwrap();
+                bytes.push(addr);
+            }
+            "CLT" => {
+                bytes.push(0x44);
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
             }

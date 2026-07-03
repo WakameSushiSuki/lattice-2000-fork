@@ -53,7 +53,7 @@ pub fn add(na: u8, nb: u8) -> Vec<u8> {
     return vec![w, c];
 }
 
-pub fn sub(na: u8, mut nb: u8) -> Vec<u8> {
+pub fn sub(na: u8, nb: u8) -> Vec<u8> {
     // A + (!B + 1)
 
     let vnb = add(!nb, 1);
