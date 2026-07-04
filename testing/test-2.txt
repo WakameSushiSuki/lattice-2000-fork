@@ -1,0 +1,6 @@
+.label test
+NOP
+NOP
+NOP
+NOP
+CALL test
