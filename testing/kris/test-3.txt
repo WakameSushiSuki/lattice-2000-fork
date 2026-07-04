@@ -1,0 +1,6 @@
+.label main
+CALL test
+NOP ; this is a comment
+LDA 5     ; load 5 into A
+.label test
+NOP
