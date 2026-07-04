@@ -1,5 +1,6 @@
 use std::env;
 use std::fs;
+use std::collections::HashMap;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -10,12 +11,24 @@ fn main() {
 
 fn assemble(code: String) -> Vec<u8> {
     let mut bytes: Vec<u8> = Vec::new();
+    let mut labels: HashMap<String, u8> = HashMap::new();
+    let mut offset: u8 = 0;
     for line in code.lines() {
         let instruction = line.split_whitespace().collect::<Vec<&str>>();
         if instruction.len() == 0 {
             continue;
         }
         match instruction[0] {
+            ".label" => {
+                let label = instruction[1].to_string();
+                labels.insert(label, offset); // (AOI * 2)
+                if offset == 0 {
+                    offset = 0;
+                }
+                else {
+                    offset -= 2;
+                }
+            }
             "NOP" => {
                 bytes.push(0x00);
                 bytes.push(0x00);
@@ -290,28 +303,28 @@ fn assemble(code: String) -> Vec<u8> {
             }
             "BRA" => {
                 bytes.push(0x3A);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "BEQ" => {
                 bytes.push(0x3B);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "BNE" => {
                 bytes.push(0x3C);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "BGE" => {
                 bytes.push(0x3D);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "BLT" => {
                 bytes.push(0x3E);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "RET" => {
                 bytes.push(0x3F);
@@ -319,28 +332,28 @@ fn assemble(code: String) -> Vec<u8> {
             }
             "CALL" => {
                 bytes.push(0x40);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "CEQ" => {
                 bytes.push(0x41);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "CNE" => {
                 bytes.push(0x42);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "CGE" => {
                 bytes.push(0x43);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "CLT" => {
                 bytes.push(0x44);
-                let addr = instruction[1].parse::<u8>().unwrap();
-                bytes.push(addr);
+                let addr = labels.get(instruction[1]).expect("Label not found");
+                bytes.push(*addr);
             }
             "SLA" => {
                 bytes.push(0x45);
@@ -368,6 +381,7 @@ fn assemble(code: String) -> Vec<u8> {
             }
             _ => panic!("Unknown instruction"),
         }
+        offset += 2;
     }
     return bytes;
 }
