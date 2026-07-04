@@ -342,6 +342,30 @@ fn assemble(code: String) -> Vec<u8> {
                 let addr = instruction[1].parse::<u8>().unwrap();
                 bytes.push(addr);
             }
+            "SLA" => {
+                bytes.push(0x45);
+                bytes.push(0x00);
+            }
+            "SLW" => {
+                bytes.push(0x46);
+                bytes.push(0x00);
+            }
+            "SLC" => {
+                bytes.push(0x47);
+                bytes.push(0x00);
+            }
+            "SRA" => {
+                bytes.push(0x48);
+                bytes.push(0x00);
+            }
+            "SRW" => {
+                bytes.push(0x49);
+                bytes.push(0x00);
+            }
+            "SRC" => {
+                bytes.push(0x4A);
+                bytes.push(0x00);
+            }
             _ => panic!("Unknown instruction"),
         }
     }

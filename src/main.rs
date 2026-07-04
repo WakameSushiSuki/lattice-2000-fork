@@ -430,6 +430,24 @@ fn main() {
                     i = instr[1] as usize;
                 }
             }
+            0x45 => {
+                reg_a = shift::bsl(reg_a);
+            }
+            0x46 => {
+                reg_w = shift::bsl(reg_w);
+            }
+            0x47 => {
+                reg_c = shift::bsl(reg_c);
+            }
+            0x48 => {
+                reg_a = shift::bsr(reg_a);
+            }
+            0x49 => {
+                reg_w = shift::bsr(reg_w);
+            }
+            0x4A => {
+                reg_c = shift::bsr(reg_c);
+            }
             0xFF => { // HLT
                 break;
             }
