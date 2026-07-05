@@ -2,8 +2,4 @@ Lattice possesses three main registers:
 A, W, C - General Purpose
 These can be written to at any time.
 
-There are also other registers used for the purpose of internal system processes.
-
-These registers are:
-PC - Used to point to the current program.
-SNP1 to SNP3 - Used to save the three operand bytes after the instruction.
+It also possesses a PC register for the purposes of pointing to instructions.
