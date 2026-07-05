@@ -18,16 +18,23 @@ fn assemble(code: String) -> Vec<u8> {
         if instruction.len() == 0 {
             continue;
         }
-        match instruction[0] {
-            ".label" => {
-                let label = instruction[1].to_string();
-                labels.insert(label, offset); // (AOI * 2)
-                if offset == 0 {
-                    offset = 0;
-                }
-                else {
-                    offset -= 2;
-                }
+        match instruction[0].to_uppercase().as_str() {
+            ".LABEL" => {
+                labels.insert(instruction[1].to_string(), offset);
+            }
+            _ => {
+                offset += 2;
+            }
+        }
+    }
+    for line in code.lines() {
+        let instruction = line.split_whitespace().collect::<Vec<&str>>();
+        if instruction.len() == 0 {
+            continue;
+        }
+        match instruction[0].to_uppercase().as_str() {
+            ".LABEL" => {
+                continue;
             }
             "NOP" => {
                 bytes.push(0x00);
@@ -381,7 +388,6 @@ fn assemble(code: String) -> Vec<u8> {
             }
             _ => panic!("Unknown instruction"),
         }
-        offset += 2;
     }
     return bytes;
 }
