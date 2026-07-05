@@ -9,6 +9,7 @@ use std::env;
 fn main() {
     let args: Vec<String> = env::args().collect();
     let code: Vec<u8> = fs::read(args[1].clone()).expect("Unable to read file");
+    let debug = args.len() > 2 && args[2] == "--debug";
     let mut i: usize = 0;
     let mut reg_a: u8 = 0;
     let mut reg_w: u8 = 0;
@@ -22,6 +23,12 @@ fn main() {
     while i < code.len() {
         let instr = vec![code[i], code[i+1]];
         i += 2;
+        if debug {
+            println!("Executing instruction: {:02X} {:02X}", instr[0], instr[1]);
+            println!("Registers: A={:02X}, W={:02X}, C={:02X}, SP={:02X}", reg_a, reg_w, reg_c, sp);
+            println!("Flags: EQ={}, LT={}, GT={}", eq, lt, gt);
+            println!("--------------------------------");
+        }
 
         match instr[0] {
             0x00 => { // NOP
