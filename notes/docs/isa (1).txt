@@ -1,0 +1,75 @@
+A hyphen before the instruction indicates completion of the implementation of that instruction.
+A plus sign before the instruction indicates consideration of removal of that instruction.
+
+- NOP - NOP
+- LDA addr - MOV A, addr
+- LDW addr - MOV W, addr
+- LDC addr - MOV C, addr
+- STA addr - MOV addr, A
+- STW addr - MOV addr, W
+- STC addr - MOV addr, C
+- ADA addr - ADD A, addr
+- ADW addr - ADD W, addr
+- ADC addr - ADD C, addr
+- SBA addr - SUB A, addr
+- SBW addr - SUB W, addr
+- SBC addr - SUB C, addr
+- MLA addr - MUL A, addr
+- MLW addr - MUL W, addr
+- MLC addr - MUL C, addr
+- ICA - INC A
+- ICW - INC W
+- ICC - INC C
+- DCA - DEC A
+- DCW - DEC W
+- DCC - DEC C
+- CPA addr - CMP A, addr
+- CPW addr - CMP W, addr
+- CPC addr - CMP C, addr
+- SLA - SHL A, 1
+- SLW - SHL W, 1
+- SLC - SHL C, 1
+- SRA - SHR A, 1
+- SRW - SHR W, 1
+- SRC - SHR C, 1
+- BRA addr - JMP addr
+- BEQ addr - JZ addr
+- BNE addr - JNZ addr
+- BGE addr 
+- BLT addr
+- LAI addr - MOV A, immediate
+- LWI addr - MOV W, immediate
+- LCI addr - MOV C, immediate
+- TWA - MOV W, A
+- TCA - MOV C, A
+- TAW - MOV A, W
+- TAC - MOV A, C
+- TWC - MOV W, C
+- TCW - MOV C, W
+- PHA - PUSH A
+- PHW - PUSH W
+- PHC - PUSH C
+- PLA - POP A
+- PLW - POP W
+- PLC - POP C
++ PSH addr - PUSH addr
++ POP addr - POP addr
+- ANA addr - AND A, addr
+- ANW addr - AND W, addr
+- ANC addr - AND C, addr
+- ORA addr - OR A, addr
+- ORW addr - OR W, addr
+- ORC addr - OR C, addr
+- XRA addr - XOR A, addr
+- XRW addr - XOR W, addr
+- XRC addr - XOR C, addr
+- NTA addr - NOT A
+- NTW addr - NOT W
+- NTC addr - NOT C
+- CALL addr - CALL addr
+- CEQ addr - CALLZ addr
+- CNE addr - CALLNZ addr
+- CGE addr - CALLGE addr
+- CLT addr - CALLLT addr
+- RET - RET
+- HLT - HLT
