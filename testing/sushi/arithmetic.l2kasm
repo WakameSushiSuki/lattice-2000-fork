@@ -1,0 +1,6 @@
+.LABEL  MAIN
+        LAI 16
+        LWI 16
+        STW 0
+        ADA 0
+        HLT
